@@ -3,6 +3,7 @@ export const HASHMAP_CONTENT = {
 
 Default capacity is 16 buckets. When entries exceed capacity × load factor (0.75), the array doubles and all entries are rehashed — an O(n) operation.`,
 
+  diagram: 'https://res.cloudinary.com/dplfzrxim/image/upload/v1782070275/hashmap_internal_working_ve6jev.png',
   interviewQA: [
     {
       q: 'How does HashMap work internally?',

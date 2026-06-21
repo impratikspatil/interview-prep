@@ -83,9 +83,25 @@ export default function TopicPage({ topic }) {
 
     switch (activeTab) {
       case 'Overview':
-        return content.overview
-          ? <p style={{ fontSize: 14, color: '#8a8a9a', lineHeight: 1.9, marginTop: 0 }}>{content.overview}</p>
-          : <EmptyState tab="Overview" />
+        return content.overview ? (
+          <div>
+            <p style={{ fontSize: 14, color: '#8a8a9a', lineHeight: 1.9, marginTop: 0 }}>
+              {content.overview}
+            </p>
+            {content.diagram && (
+              <img
+                src={content.diagram}
+                alt="diagram"
+                style={{
+                  width: '100%',
+                  borderRadius: 10,
+                  border: '1px solid #222228',
+                  marginTop: 16,
+                }}
+              />
+            )}
+          </div>
+        ) : <EmptyState tab="Overview" />
 
       case 'Interview Q&A':
         return content.interviewQA?.length ? (
