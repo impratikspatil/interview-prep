@@ -1,17 +1,13 @@
 import { useState } from 'react'
-import { TABS, DIFFICULTY_CONFIG } from '../data/Topics'
-import { HASHMAP_CONTENT } from '../data/content/Hashmap'
+import { TABS, DIFFICULTY_CONFIG } from '../data/topics'
+import { HASHMAP_CONTENT, HASHMAP_DIAGRAM } from '../data/content/hashmap'
 
-const CONTENT_MAP = {
-  hashmap: HASHMAP_CONTENT,
-}
+const CONTENT_MAP = { hashmap: HASHMAP_CONTENT }
+const DIAGRAM_MAP = { hashmap: HASHMAP_DIAGRAM }
 
 function EmptyState({ tab }) {
   return (
-    <div style={{
-      display: 'flex', flexDirection: 'column', alignItems: 'center',
-      justifyContent: 'center', height: 300, gap: 12
-    }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 300, gap: 12 }}>
       <div style={{ fontSize: 32 }}>📝</div>
       <div style={{ fontSize: 14, color: '#5a5a6a' }}>No {tab} content yet</div>
       <div style={{ fontSize: 12, color: '#36363f' }}>Coming soon as we study this topic</div>
@@ -59,10 +55,7 @@ function QAItem({ q, a, idx }) {
           <span style={{ fontSize: 11, color: '#7c6af7', fontWeight: 600, marginTop: 2, minWidth: 20 }}>Q{idx + 1}</span>
           <span style={{ fontSize: 13, color: '#c4c4d0', fontWeight: 500 }}>{q}</span>
         </div>
-        <span style={{
-          color: '#36363f', fontSize: 12, marginLeft: 12, flexShrink: 0,
-          transform: open ? 'rotate(180deg)' : 'none', transition: '0.15s', display: 'inline-block'
-        }}>▼</span>
+        <span style={{ color: '#36363f', fontSize: 12, marginLeft: 12, flexShrink: 0, transform: open ? 'rotate(180deg)' : 'none', transition: '0.15s', display: 'inline-block' }}>▼</span>
       </div>
       {open && (
         <div style={{ padding: '12px 16px', borderTop: '1px solid #1a1a1f', background: '#131316' }}>
@@ -76,37 +69,30 @@ function QAItem({ q, a, idx }) {
 export default function TopicPage({ topic }) {
   const [activeTab, setActiveTab] = useState('Overview')
   const content = CONTENT_MAP[topic.id]
+  const diagram = DIAGRAM_MAP[topic.id]
   const diff = DIFFICULTY_CONFIG[topic.difficulty]
 
+  const availableTabs = TABS.filter(tab => {
+    if (tab === 'Diagram') return !!diagram
+    return true
+  })
+
   const renderTab = () => {
-    if (!content) return <EmptyState tab={activeTab} />
+    if (!content && activeTab !== 'Diagram') return <EmptyState tab={activeTab} />
 
     switch (activeTab) {
       case 'Overview':
-        return content.overview ? (
-          <div>
-            <p style={{ fontSize: 14, color: '#8a8a9a', lineHeight: 1.9, marginTop: 0 }}>
-              {content.overview}
-            </p>
-            {content.diagram && (
-              <img
-                src={content.diagram}
-                alt="diagram"
-                style={{
-                  width: '100%',
-                  maxWidth: 600,
-                  display: 'block',
-                  margin: '20px auto 0',
-                  borderRadius: 10,
-                  border: '1px solid #222228',
-                }}
-              />
-            )}
-          </div>
-        ) : <EmptyState tab="Overview" />
+        return content?.overview
+          ? <p style={{ fontSize: 14, color: '#8a8a9a', lineHeight: 1.9, marginTop: 0 }}>{content.overview}</p>
+          : <EmptyState tab="Overview" />
+
+      case 'Diagram':
+        return diagram ? (
+          <div style={{ width: '100%' }} dangerouslySetInnerHTML={{ __html: diagram }} />
+        ) : <EmptyState tab="Diagram" />
 
       case 'Interview Q&A':
-        return content.interviewQA?.length ? (
+        return content?.interviewQA?.length ? (
           <div>
             <p style={{ fontSize: 12, color: '#5a5a6a', marginTop: 0, marginBottom: 16 }}>
               Click a question to reveal the answer. Practice saying it out loud.
@@ -116,17 +102,16 @@ export default function TopicPage({ topic }) {
         ) : <EmptyState tab="Interview Q&A" />
 
       case 'Code':
-        return content.code?.length
+        return content?.code?.length
           ? <div>{content.code.map((block, i) => <CodeBlock key={i} {...block} />)}</div>
           : <EmptyState tab="Code" />
 
       case 'Deep Dive':
-        return content.deepDive ? (
+        return content?.deepDive ? (
           <div style={{ fontSize: 13, color: '#8a8a9a', lineHeight: 1.8 }}>
             {content.deepDive.split('\n').map((line, i) => {
               if (line.startsWith('**') && line.endsWith('**'))
                 return <div key={i} style={{ fontWeight: 600, color: '#c4c4d0', marginTop: 16, marginBottom: 6 }}>{line.replace(/\*\*/g, '')}</div>
-              if (line.startsWith('```')) return null
               if (!line.trim()) return <br key={i} />
               return <div key={i}>{line}</div>
             })}
@@ -134,7 +119,7 @@ export default function TopicPage({ topic }) {
         ) : <EmptyState tab="Deep Dive" />
 
       case 'Revision Notes':
-        return content.revisionNotes ? (
+        return content?.revisionNotes ? (
           <div style={{ background: '#131316', border: '1px solid #222228', borderRadius: 10, padding: 20 }}>
             {content.revisionNotes.split('\n').map((line, i) => {
               if (line.startsWith('**') && line.endsWith('**'))
@@ -159,27 +144,18 @@ export default function TopicPage({ topic }) {
 
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-      {/* Topic header */}
       <div style={{ padding: '20px 28px 0', borderBottom: '1px solid #1a1a1f', background: '#0d0d0f' }}>
         <div style={{ marginBottom: 14 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
             <h1 style={{ margin: 0, fontSize: 20, fontWeight: 600, color: '#e4e4f0' }}>{topic.label}</h1>
-            <span style={{
-              padding: '2px 8px', borderRadius: 4, fontSize: 11, fontWeight: 500,
-              background: diff.bg, color: diff.color
-            }}>{diff.label}</span>
+            <span style={{ padding: '2px 8px', borderRadius: 4, fontSize: 11, fontWeight: 500, background: diff.bg, color: diff.color }}>{diff.label}</span>
             {topic.tags?.map(tag => (
-              <span key={tag} style={{
-                padding: '2px 8px', borderRadius: 4, fontSize: 11,
-                background: '#131316', color: '#5a5a6a', border: '1px solid #222228'
-              }}>{tag}</span>
+              <span key={tag} style={{ padding: '2px 8px', borderRadius: 4, fontSize: 11, background: '#131316', color: '#5a5a6a', border: '1px solid #222228' }}>{tag}</span>
             ))}
           </div>
         </div>
-
-        {/* Tabs */}
         <div style={{ display: 'flex', gap: 2 }}>
-          {TABS.map(tab => (
+          {availableTabs.map(tab => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -190,12 +166,10 @@ export default function TopicPage({ topic }) {
                 color: activeTab === tab ? '#7c6af7' : '#5a5a6a',
                 borderBottom: activeTab === tab ? '2px solid #7c6af7' : '2px solid transparent',
               }}
-            >{tab}</button> 
+            >{tab}</button>
           ))}
         </div>
       </div>
-
-      {/* Content */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '24px 28px' }}>
         {renderTab()}
       </div>

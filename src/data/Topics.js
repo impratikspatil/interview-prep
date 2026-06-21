@@ -110,4 +110,4 @@ export const DIFFICULTY_CONFIG = {
   advanced:     { label: 'Advanced',     color: '#f26450', bg: '#2d1008' },
 }
 
-export const TABS = ['Overview', 'Interview Q&A', 'Code', 'Deep Dive', 'Revision Notes']
+export const TABS = ['Overview', 'Diagram', 'Interview Q&A', 'Code', 'Deep Dive', 'Revision Notes']
