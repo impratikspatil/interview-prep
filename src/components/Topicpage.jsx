@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { TABS, DIFFICULTY_CONFIG } from '../data/Topics'
-import { HASHMAP_CONTENT, HASHMAP_DIAGRAM } from '../data/content/Hashmap'
+import { HASHMAP_CONTENT } from '../data/content/Hashmap'
+import { HASHMAP_DIAGRAMS } from '../data/diagrams/hashmap/index'
 
-const CONTENT_MAP = { hashmap: HASHMAP_CONTENT }
-const DIAGRAM_MAP = { hashmap: HASHMAP_DIAGRAM }
+
+const CONTENT_MAP  = { hashmap: HASHMAP_CONTENT }
+const DIAGRAMS_MAP = { hashmap: HASHMAP_DIAGRAMS }
 
 function EmptyState({ tab }) {
   return (
@@ -71,9 +73,10 @@ export default function TopicPage({ topic }) {
   const content = CONTENT_MAP[topic.id]
   const diagram = DIAGRAM_MAP[topic.id]
   const diff = DIFFICULTY_CONFIG[topic.difficulty]
+  const diagrams = DIAGRAMS_MAP[topic.id]
 
   const availableTabs = TABS.filter(tab => {
-    if (tab === 'Diagram') return !!diagram
+    if (tab === 'Diagram') return !!diagrams?.length
     return true
   })
 
@@ -87,11 +90,24 @@ export default function TopicPage({ topic }) {
           : <EmptyState tab="Overview" />
 
       case 'Diagram':
-        return diagram ? (
-          <div
-            style={{ width: '100%', maxWidth: 700, margin: '0 auto' }}
-            dangerouslySetInnerHTML={{ __html: diagram }}
-          />
+        return diagrams?.length ? (
+          <div>
+            {diagrams.map((d, i) => (
+              <div key={i} style={{ marginBottom: 48 }}>
+                <div style={{
+                  fontSize: 13, fontWeight: 500, color: '#7c6af7',
+                  marginBottom: 12, paddingBottom: 8,
+                  borderBottom: '1px solid #1a1a1f'
+                }}>
+                  {d.title}
+                </div>
+                <div
+                  style={{ width: '100%', maxWidth: 700, margin: '0 auto' }}
+                  dangerouslySetInnerHTML={{ __html: d.svg }}
+                />
+              </div>
+            ))}
+          </div>
         ) : <EmptyState tab="Diagram" />
 
       case 'Interview Q&A':
