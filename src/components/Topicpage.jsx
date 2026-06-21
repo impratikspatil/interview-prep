@@ -71,7 +71,6 @@ function QAItem({ q, a, idx }) {
 export default function TopicPage({ topic }) {
   const [activeTab, setActiveTab] = useState('Overview')
   const content = CONTENT_MAP[topic.id]
-  const diagram = DIAGRAM_MAP[topic.id]
   const diff = DIFFICULTY_CONFIG[topic.difficulty]
   const diagrams = DIAGRAMS_MAP[topic.id]
 
