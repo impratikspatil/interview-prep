@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { TABS, DIFFICULTY_CONFIG } from '../data/topics'
+import { TABS, DIFFICULTY_CONFIG } from '../data/Topics'
 import { HASHMAP_CONTENT } from '../data/content/Hashmap'
 
 const CONTENT_MAP = {

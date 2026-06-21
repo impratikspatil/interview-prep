@@ -1,4 +1,4 @@
-import { SECTIONS, DIFFICULTY_CONFIG } from '../data/topics'
+import { SECTIONS, DIFFICULTY_CONFIG } from '../data/Topics'
 
 const CONTENT_READY = ['hashmap']
 

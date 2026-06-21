@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { SECTIONS, DIFFICULTY_CONFIG } from '../data/topics'
+import { SECTIONS, DIFFICULTY_CONFIG } from '../data/Topics'
 
 export default function Sidebar({ activeTopic, onSelectTopic }) {
   const [expanded, setExpanded] = useState({ java: true })
