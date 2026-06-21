@@ -88,7 +88,10 @@ export default function TopicPage({ topic }) {
 
       case 'Diagram':
         return diagram ? (
-          <div style={{ width: '100%' }} dangerouslySetInnerHTML={{ __html: diagram }} />
+          <div
+            style={{ width: '100%', maxWidth: 700, margin: '0 auto' }}
+            dangerouslySetInnerHTML={{ __html: diagram }}
+          />
         ) : <EmptyState tab="Diagram" />
 
       case 'Interview Q&A':
