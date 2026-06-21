@@ -172,7 +172,7 @@ export default function TopicPage({ topic }) {
                 color: activeTab === tab ? '#7c6af7' : '#5a5a6a',
                 borderBottom: activeTab === tab ? '2px solid #7c6af7' : '2px solid transparent',
               }}
-            >{tab}</button>
+            >{tab}</button> 
           ))}
         </div>
       </div>

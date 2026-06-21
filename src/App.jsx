@@ -1,7 +1,7 @@
 import './index.css'
 import { useState } from 'react'
 import Sidebar from './components/Sidebar'
-import TopicPage from './components/TopicPage'
+import TopicPage from './components/Topicpage'
 import Dashboard from './components/Dashboard'
 
 export default function App() {
