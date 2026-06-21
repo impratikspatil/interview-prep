@@ -94,9 +94,11 @@ export default function TopicPage({ topic }) {
                 alt="diagram"
                 style={{
                   width: '100%',
+                  maxWidth: 600,
+                  display: 'block',
+                  margin: '20px auto 0',
                   borderRadius: 10,
                   border: '1px solid #222228',
-                  marginTop: 16,
                 }}
               />
             )}
