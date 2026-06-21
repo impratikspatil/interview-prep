@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { TABS, DIFFICULTY_CONFIG } from '../data/topics'
-import { HASHMAP_CONTENT } from '../data/content/hashmap'
+import { HASHMAP_CONTENT } from '../data/content/Hashmap'
 
 const CONTENT_MAP = {
   hashmap: HASHMAP_CONTENT,
