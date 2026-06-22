@@ -11,7 +11,7 @@ export const SECTIONS = [
       { id: 'executor', label: 'Executor Framework', difficulty: 'advanced', tags: ['concurrency'] },
       { id: 'jvm', label: 'JVM Architecture', difficulty: 'advanced', tags: ['internals'] },
       { id: 'gc', label: 'Garbage Collection', difficulty: 'advanced', tags: ['internals'] },
-      { id: 'string-pool', label: 'String Pool', difficulty: 'beginner', tags: ['core'] },
+      { id: 'string-pool', label: 'String Internals', difficulty: 'intermediate', tags: ['core', 'memory'] },
       { id: 'synchronization', label: 'Synchronization', difficulty: 'advanced', tags: ['concurrency'] },
       { id: 'volatile', label: 'Volatile', difficulty: 'advanced', tags: ['concurrency'] },
       { id: 'atomic', label: 'Atomic Classes', difficulty: 'advanced', tags: ['concurrency'] },

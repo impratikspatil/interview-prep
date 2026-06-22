@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { TABS, DIFFICULTY_CONFIG } from '../data/Topics'
-import { HASHMAP_CONTENT } from '../data/content/Hashmap'
+import { TABS, DIFFICULTY_CONFIG } from '../data/topics'
+import { HASHMAP_CONTENT } from '../data/content/hashmap'
 import { HASHMAP_DIAGRAMS } from '../data/diagrams/hashmap/index'
+import { STRING_CONTENT } from '../data/content/String'
+import { STRING_DIAGRAMS } from '../data/diagrams/String/StringDaigraIndex'
 
-
-const CONTENT_MAP  = { hashmap: HASHMAP_CONTENT }
-const DIAGRAMS_MAP = { hashmap: HASHMAP_DIAGRAMS }
+const CONTENT_MAP  = { hashmap: HASHMAP_CONTENT, 'string-pool': STRING_CONTENT }
+const DIAGRAMS_MAP = { hashmap: HASHMAP_DIAGRAMS, 'string-pool': STRING_DIAGRAMS }
 
 function EmptyState({ tab }) {
   return (
@@ -71,8 +72,8 @@ function QAItem({ q, a, idx }) {
 export default function TopicPage({ topic }) {
   const [activeTab, setActiveTab] = useState('Overview')
   const content = CONTENT_MAP[topic.id]
-  const diff = DIFFICULTY_CONFIG[topic.difficulty]
   const diagrams = DIAGRAMS_MAP[topic.id]
+  const diff = DIFFICULTY_CONFIG[topic.difficulty]
 
   const availableTabs = TABS.filter(tab => {
     if (tab === 'Diagram') return !!diagrams?.length
@@ -93,17 +94,10 @@ export default function TopicPage({ topic }) {
           <div>
             {diagrams.map((d, i) => (
               <div key={i} style={{ marginBottom: 48 }}>
-                <div style={{
-                  fontSize: 13, fontWeight: 500, color: '#7c6af7',
-                  marginBottom: 12, paddingBottom: 8,
-                  borderBottom: '1px solid #1a1a1f'
-                }}>
+                <div style={{ fontSize: 13, fontWeight: 500, color: '#7c6af7', marginBottom: 12, paddingBottom: 8, borderBottom: '1px solid #1a1a1f' }}>
                   {d.title}
                 </div>
-                <div
-                  style={{ width: '100%', maxWidth: 700, margin: '0 auto' }}
-                  dangerouslySetInnerHTML={{ __html: d.svg }}
-                />
+                <div style={{ width: '100%', maxWidth: 700, margin: '0 auto' }} dangerouslySetInnerHTML={{ __html: d.svg }} />
               </div>
             ))}
           </div>
