@@ -28,21 +28,21 @@ export default function Dashboard({ onSelectTopic }) {
       </div>
 
       {/* Stats row */}
-      <div style={{ display: 'flex', gap: 12, marginBottom: 40 }}>
-        {[
-          { label: 'Total topics', value: allTopics.length, color: '#7c6af7' },
-          { label: 'Sections', value: SECTIONS.length, color: '#2dd4aa' },
-          { label: 'Topics ready', value: ready, color: '#f59e0b' },
-        ].map(stat => (
-          <div key={stat.label} style={{
-            background: '#131316', border: '1px solid #1a1a1f',
-            borderRadius: 10, padding: '16px 20px', minWidth: 120
-          }}>
-            <div style={{ fontSize: 24, fontWeight: 700, color: stat.color, marginBottom: 4 }}>{stat.value}</div>
-            <div style={{ fontSize: 11, color: '#5a5a6a' }}>{stat.label}</div>
-          </div>
-        ))}
-      </div>
+    <div style={{ display: 'flex', gap: 12, marginBottom: 40 }}>
+      {[
+        { label: 'Total topics', value: allTopics.length, color: '#7c6af7' },
+        { label: 'Sections', value: SECTIONS.length, color: '#2dd4aa' },
+        // "Topics ready" object removed from here
+      ].map(stat => (
+        <div key={stat.label} style={{
+          background: '#131316', border: '1px solid #1a1a1f',
+          borderRadius: 10, padding: '16px 20px', minWidth: 120
+        }}>
+          <div style={{ fontSize: 24, fontWeight: 700, color: stat.color, marginBottom: 4 }}>{stat.value}</div>
+          <div style={{ fontSize: 11, color: '#5a5a6a' }}>{stat.label}</div>
+        </div>
+      ))}
+    </div>
 
       {/* Sections grid */}
       <div style={{ marginBottom: 16 }}>
