@@ -1,0 +1,249 @@
+<svg width="100%" viewBox="0 0 680 940" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Java Collections Framework — hierarchy and when to use which</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="340" y="26" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="500" fill="#c4c4d0">Collections Framework — Hierarchy</text>
+
+  <!-- Root: Iterable -->
+  <rect x="280" y="36" width="120" height="32" rx="6" fill="#1e1b3a" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="340" y="56" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#7c6af7">Iterable</text>
+
+  <line x1="340" y1="68" x2="340" y2="84" stroke="#5a5a6a" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- Collection -->
+  <rect x="270" y="84" width="140" height="32" rx="6" fill="#1e1b3a" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="340" y="104" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#7c6af7">Collection</text>
+
+  <!-- Branches to List, Set, Queue -->
+  <line x1="200" y1="116" x2="200" y2="140" stroke="#5a5a6a" stroke-width="1.2"/>
+  <line x1="340" y1="116" x2="340" y2="140" stroke="#5a5a6a" stroke-width="1.2"/>
+  <line x1="480" y1="116" x2="480" y2="140" stroke="#5a5a6a" stroke-width="1.2"/>
+  <line x1="200" y1="116" x2="480" y2="116" stroke="#5a5a6a" stroke-width="1.2"/>
+  <line x1="200" y1="140" x2="200" y2="150" stroke="#5a5a6a" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="340" y1="140" x2="340" y2="150" stroke="#5a5a6a" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="480" y1="140" x2="480" y2="150" stroke="#5a5a6a" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- List -->
+  <rect x="130" y="150" width="140" height="32" rx="6" fill="#0d2e26" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="200" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#2dd4aa">List</text>
+
+  <!-- Set -->
+  <rect x="270" y="150" width="140" height="32" rx="6" fill="#2d1f06" stroke="#854F0B" stroke-width="0.5"/>
+  <text x="340" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#f59e0b">Set</text>
+
+  <!-- Queue -->
+  <rect x="410" y="150" width="140" height="32" rx="6" fill="#2d1008" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="480" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#f26450">Queue</text>
+
+  <!-- List implementations -->
+  <line x1="200" y1="182" x2="200" y2="200" stroke="#5a5a6a" stroke-width="1"/>
+  <line x1="130" y1="200" x2="270" y2="200" stroke="#5a5a6a" stroke-width="1"/>
+  <line x1="130" y1="200" x2="130" y2="210" stroke="#5a5a6a" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="200" y1="200" x2="200" y2="210" stroke="#5a5a6a" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="270" y1="200" x2="270" y2="210" stroke="#5a5a6a" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <rect x="60" y="210" width="130" height="28" rx="4" fill="#131316" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="125" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#2dd4aa">ArrayList</text>
+  <rect x="135" y="210" width="130" height="28" rx="4" fill="#131316" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="200" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#2dd4aa">LinkedList</text>
+  <rect x="210" y="210" width="120" height="28" rx="4" fill="#131316" stroke="#36363f" stroke-width="0.5"/>
+  <text x="270" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">Vector (legacy)</text>
+
+  <!-- Set implementations -->
+  <line x1="340" y1="182" x2="340" y2="200" stroke="#5a5a6a" stroke-width="1"/>
+  <line x1="290" y1="200" x2="390" y2="200" stroke="#5a5a6a" stroke-width="1"/>
+  <line x1="290" y1="200" x2="290" y2="210" stroke="#5a5a6a" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="340" y1="200" x2="340" y2="210" stroke="#5a5a6a" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="390" y1="200" x2="390" y2="210" stroke="#5a5a6a" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <rect x="248" y="210" width="84" height="28" rx="4" fill="#131316" stroke="#854F0B" stroke-width="0.5"/>
+  <text x="290" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#f59e0b">HashSet</text>
+  <rect x="298" y="210" width="84" height="28" rx="4" fill="#131316" stroke="#854F0B" stroke-width="0.5"/>
+  <text x="340" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#f59e0b">LinkedHashSet</text>
+  <rect x="348" y="210" width="84" height="28" rx="4" fill="#131316" stroke="#854F0B" stroke-width="0.5"/>
+  <text x="390" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#f59e0b">TreeSet</text>
+
+  <!-- Queue implementations -->
+  <line x1="480" y1="182" x2="480" y2="200" stroke="#5a5a6a" stroke-width="1"/>
+  <line x1="430" y1="200" x2="540" y2="200" stroke="#5a5a6a" stroke-width="1"/>
+  <line x1="430" y1="200" x2="430" y2="210" stroke="#5a5a6a" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="480" y1="200" x2="480" y2="210" stroke="#5a5a6a" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="540" y1="200" x2="540" y2="210" stroke="#5a5a6a" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <rect x="396" y="210" width="68" height="28" rx="4" fill="#131316" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="430" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#f26450">ArrayDeque</text>
+  <rect x="447" y="210" width="66" height="28" rx="4" fill="#131316" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="480" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#f26450">PriorityQueue</text>
+  <rect x="506" y="210" width="68" height="28" rx="4" fill="#131316" stroke="#36363f" stroke-width="0.5"/>
+  <text x="540" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">LinkedList</text>
+
+  <!-- Map (separate) -->
+  <rect x="570" y="84" width="100" height="32" rx="6" fill="#1e1b3a" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="620" y="104" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#7c6af7">Map</text>
+  <text x="620" y="76" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5a6a">(separate)</text>
+
+  <line x1="620" y1="116" x2="620" y2="200" stroke="#5a5a6a" stroke-width="1"/>
+  <line x1="580" y1="200" x2="640" y2="200" stroke="#5a5a6a" stroke-width="1"/>
+  <line x1="580" y1="200" x2="580" y2="210" stroke="#5a5a6a" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="610" y1="200" x2="610" y2="210" stroke="#5a5a6a" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="640" y1="200" x2="640" y2="210" stroke="#5a5a6a" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <rect x="554" y="150" width="132" height="32" rx="6" fill="#1e1b3a" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="620" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#7c6af7">HashMap / variants</text>
+
+  <rect x="548" y="210" width="46" height="28" rx="4" fill="#131316" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="571" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#8a8a9a">HashMap</text>
+  <rect x="597" y="210" width="46" height="28" rx="4" fill="#131316" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="620" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#8a8a9a">LinkedMap</text>
+  <rect x="646" y="210" width="34" height="28" rx="4" fill="#131316" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="663" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#8a8a9a">TreeMap</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="258" x2="640" y2="258" stroke="#1a1a1f" stroke-width="0.5" stroke-dasharray="4 4"/>
+
+  <!-- Section 2: When to use which -->
+  <text x="340" y="282" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="500" fill="#c4c4d0">When to use which</text>
+
+  <!-- List comparison -->
+  <text x="40" y="308" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#2dd4aa">List</text>
+  <rect x="40" y="316" width="185" height="72" rx="6" fill="#131316" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="132" y="334" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#c4c4d0">ArrayList</text>
+  <text x="132" y="350" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">get(i) O(1) ✓</text>
+  <text x="132" y="366" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">insert mid O(n)</text>
+  <text x="132" y="380" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#2dd4aa">use for most cases</text>
+
+  <rect x="235" y="316" width="185" height="72" rx="6" fill="#131316" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="328" y="334" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#c4c4d0">LinkedList</text>
+  <text x="328" y="350" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">head/tail O(1) ✓</text>
+  <text x="328" y="366" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">get(i) O(n)</text>
+  <text x="328" y="380" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#f59e0b">use rarely</text>
+
+  <rect x="430" y="316" width="210" height="72" rx="6" fill="#131316" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="535" y="334" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#c4c4d0">ArrayDeque</text>
+  <text x="535" y="350" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">push/pop O(1) ✓</text>
+  <text x="535" y="366" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">better cache locality</text>
+  <text x="535" y="380" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#2dd4aa">prefer over Stack/LL</text>
+
+  <!-- Map comparison -->
+  <text x="40" y="410" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#7c6af7">Map</text>
+  <rect x="40" y="418" width="185" height="72" rx="6" fill="#131316" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="132" y="436" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#c4c4d0">HashMap</text>
+  <text x="132" y="452" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">no order</text>
+  <text x="132" y="468" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">O(1) avg</text>
+  <text x="132" y="482" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#2dd4aa">general purpose</text>
+
+  <rect x="235" y="418" width="185" height="72" rx="6" fill="#131316" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="328" y="436" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#c4c4d0">LinkedHashMap</text>
+  <text x="328" y="452" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">insertion order</text>
+  <text x="328" y="468" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">O(1) avg</text>
+  <text x="328" y="482" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#2dd4aa">LRU cache</text>
+
+  <rect x="430" y="418" width="210" height="72" rx="6" fill="#131316" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="535" y="436" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#c4c4d0">TreeMap</text>
+  <text x="535" y="452" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">sorted keys</text>
+  <text x="535" y="468" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">O(log n)</text>
+  <text x="535" y="482" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#2dd4aa">range queries</text>
+
+  <!-- Set comparison -->
+  <text x="40" y="512" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#f59e0b">Set</text>
+  <rect x="40" y="520" width="185" height="72" rx="6" fill="#131316" stroke="#854F0B" stroke-width="0.5"/>
+  <text x="132" y="538" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#c4c4d0">HashSet</text>
+  <text x="132" y="554" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">no order</text>
+  <text x="132" y="570" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">O(1)</text>
+  <text x="132" y="584" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#2dd4aa">fast uniqueness check</text>
+
+  <rect x="235" y="520" width="185" height="72" rx="6" fill="#131316" stroke="#854F0B" stroke-width="0.5"/>
+  <text x="328" y="538" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#c4c4d0">LinkedHashSet</text>
+  <text x="328" y="554" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">insertion order</text>
+  <text x="328" y="570" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">O(1)</text>
+  <text x="328" y="584" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#2dd4aa">unique + ordered</text>
+
+  <rect x="430" y="520" width="210" height="72" rx="6" fill="#131316" stroke="#854F0B" stroke-width="0.5"/>
+  <text x="535" y="538" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#c4c4d0">TreeSet</text>
+  <text x="535" y="554" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">sorted, unique</text>
+  <text x="535" y="570" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a">O(log n)</text>
+  <text x="535" y="584" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#2dd4aa">sorted range ops</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="612" x2="640" y2="612" stroke="#1a1a1f" stroke-width="0.5" stroke-dasharray="4 4"/>
+
+  <!-- Section 3: Complexity table -->
+  <text x="340" y="636" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="500" fill="#c4c4d0">Complexity Summary</text>
+
+  <!-- Table header -->
+  <rect x="40" y="648" width="600" height="28" rx="4" fill="#1e1b3a" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="130" y="666" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#7c6af7">Collection</text>
+  <text x="270" y="666" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#7c6af7">get</text>
+  <text x="360" y="666" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#7c6af7">add</text>
+  <text x="450" y="666" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#7c6af7">remove</text>
+  <text x="570" y="666" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#7c6af7">ordered</text>
+
+  <!-- Rows -->
+  <g font-family="Inter,sans-serif" font-size="11" fill="#8a8a9a">
+    <rect x="40" y="676" width="600" height="24" rx="0" fill="#131316" stroke="#1a1a1f" stroke-width="0.5"/>
+    <text x="130" y="692" text-anchor="middle" fill="#2dd4aa">ArrayList</text>
+    <text x="270" y="692" text-anchor="middle">O(1)</text>
+    <text x="360" y="692" text-anchor="middle">O(1) amort</text>
+    <text x="450" y="692" text-anchor="middle">O(n)</text>
+    <text x="570" y="692" text-anchor="middle">insertion</text>
+
+    <rect x="40" y="700" width="600" height="24" rx="0" fill="#0d0d0f" stroke="#1a1a1f" stroke-width="0.5"/>
+    <text x="130" y="716" text-anchor="middle" fill="#2dd4aa">LinkedList</text>
+    <text x="270" y="716" text-anchor="middle">O(n)</text>
+    <text x="360" y="716" text-anchor="middle">O(1) ends</text>
+    <text x="450" y="716" text-anchor="middle">O(1) ends</text>
+    <text x="570" y="716" text-anchor="middle">insertion</text>
+
+    <rect x="40" y="724" width="600" height="24" rx="0" fill="#131316" stroke="#1a1a1f" stroke-width="0.5"/>
+    <text x="130" y="740" text-anchor="middle" fill="#7c6af7">HashMap</text>
+    <text x="270" y="740" text-anchor="middle">O(1)</text>
+    <text x="360" y="740" text-anchor="middle">O(1)</text>
+    <text x="450" y="740" text-anchor="middle">O(1)</text>
+    <text x="570" y="740" text-anchor="middle">none</text>
+
+    <rect x="40" y="748" width="600" height="24" rx="0" fill="#0d0d0f" stroke="#1a1a1f" stroke-width="0.5"/>
+    <text x="130" y="764" text-anchor="middle" fill="#7c6af7">LinkedHashMap</text>
+    <text x="270" y="764" text-anchor="middle">O(1)</text>
+    <text x="360" y="764" text-anchor="middle">O(1)</text>
+    <text x="450" y="764" text-anchor="middle">O(1)</text>
+    <text x="570" y="764" text-anchor="middle">insertion</text>
+
+    <rect x="40" y="772" width="600" height="24" rx="0" fill="#131316" stroke="#1a1a1f" stroke-width="0.5"/>
+    <text x="130" y="788" text-anchor="middle" fill="#7c6af7">TreeMap</text>
+    <text x="270" y="788" text-anchor="middle">O(log n)</text>
+    <text x="360" y="788" text-anchor="middle">O(log n)</text>
+    <text x="450" y="788" text-anchor="middle">O(log n)</text>
+    <text x="570" y="788" text-anchor="middle">sorted</text>
+
+    <rect x="40" y="796" width="600" height="24" rx="0" fill="#0d0d0f" stroke="#1a1a1f" stroke-width="0.5"/>
+    <text x="130" y="812" text-anchor="middle" fill="#f59e0b">HashSet</text>
+    <text x="270" y="812" text-anchor="middle">O(1)</text>
+    <text x="360" y="812" text-anchor="middle">O(1)</text>
+    <text x="450" y="812" text-anchor="middle">O(1)</text>
+    <text x="570" y="812" text-anchor="middle">none</text>
+
+    <rect x="40" y="820" width="600" height="24" rx="0" fill="#131316" stroke="#1a1a1f" stroke-width="0.5"/>
+    <text x="130" y="836" text-anchor="middle" fill="#f59e0b">TreeSet</text>
+    <text x="270" y="836" text-anchor="middle">O(log n)</text>
+    <text x="360" y="836" text-anchor="middle">O(log n)</text>
+    <text x="450" y="836" text-anchor="middle">O(log n)</text>
+    <text x="570" y="836" text-anchor="middle">sorted</text>
+
+    <rect x="40" y="844" width="600" height="24" rx="0" fill="#0d0d0f" stroke="#1a1a1f" stroke-width="0.5"/>
+    <text x="130" y="860" text-anchor="middle" fill="#f26450">PriorityQueue</text>
+    <text x="270" y="860" text-anchor="middle">O(1) peek</text>
+    <text x="360" y="860" text-anchor="middle">O(log n)</text>
+    <text x="450" y="860" text-anchor="middle">O(log n)</text>
+    <text x="570" y="860" text-anchor="middle">priority</text>
+  </g>
+
+  <!-- Bottom tip -->
+  <rect x="40" y="878" width="600" height="44" rx="8" fill="#1e1b3a" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="340" y="896" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#7c6af7">Quick rule: need order? → Linked. Need sorted? → Tree. Need fast? → Hash.</text>
+  <text x="340" y="914" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#8a8a9a">ArrayList for lists · HashMap for maps · HashSet for sets · ArrayDeque for stack/queue</text>
+</svg>

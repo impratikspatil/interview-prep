@@ -4,9 +4,11 @@ import { HASHMAP_CONTENT } from '../data/content/Hashmap'
 import { HASHMAP_DIAGRAMS } from '../data/diagrams/hashmap/index'
 import { STRING_CONTENT } from '../data/content/String'
 import { STRING_DIAGRAMS } from '../data/diagrams/String/StringDaigraIndex'
+import { COLLECTIONS_CONTENT } from '../data/content/collections'
+import { COLLECTIONS_DIAGRAMS } from '../data/diagrams/collections/index'
 
-const CONTENT_MAP  = { hashmap: HASHMAP_CONTENT, 'string-pool': STRING_CONTENT }
-const DIAGRAMS_MAP = { hashmap: HASHMAP_DIAGRAMS, 'string-pool': STRING_DIAGRAMS }
+const CONTENT_MAP  = { hashmap: HASHMAP_CONTENT, 'string-pool': STRING_CONTENT, collections: COLLECTIONS_CONTENT }
+const DIAGRAMS_MAP = { hashmap: HASHMAP_DIAGRAMS, 'string-pool': STRING_DIAGRAMS, collections: COLLECTIONS_DIAGRAMS }
 
 function EmptyState({ tab }) {
   return (
