@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { TABS, DIFFICULTY_CONFIG } from '../data/topics'
-import { HASHMAP_CONTENT } from '../data/content/hashmap'
+import { HASHMAP_CONTENT } from '../data/content/Hashmap'
 import { HASHMAP_DIAGRAMS } from '../data/diagrams/hashmap/index'
 import { STRING_CONTENT } from '../data/content/String'
 import { STRING_DIAGRAMS } from '../data/diagrams/String/StringDaigraIndex'
