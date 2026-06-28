@@ -1,6 +1,9 @@
 export const COLLECTIONS_CONTENT = {
   overview: `The Java Collections Framework is a unified architecture for storing and manipulating groups of objects. It provides interfaces, implementations, and algorithms. The two root interfaces are Collection (List, Set, Queue) and Map (separate hierarchy). Every collection trades off between speed, ordering, uniqueness, and thread safety — picking the right one is a core interview skill.`,
 
+  diagram: `<iframe src="/Java Collections Carousel.html" style="width:100%;height:750px;border:none;border-radius:8px;"></iframe>`,
+
+
   interviewQA: [
     {
       q: 'What is the difference between ArrayList and LinkedList?',

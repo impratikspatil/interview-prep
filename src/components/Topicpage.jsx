@@ -99,7 +99,7 @@ export default function TopicPage({ topic }) {
                 <div style={{ fontSize: 13, fontWeight: 500, color: '#7c6af7', marginBottom: 12, paddingBottom: 8, borderBottom: '1px solid #1a1a1f' }}>
                   {d.title}
                 </div>
-                <div style={{ width: '100%', maxWidth: 700, margin: '0 auto' }} dangerouslySetInnerHTML={{ __html: d.svg }} />
+                <div style={{ width: '100%' }} dangerouslySetInnerHTML={{ __html: d.svg }} />
               </div>
             ))}
           </div>
