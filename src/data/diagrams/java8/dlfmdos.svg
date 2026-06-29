@@ -1,0 +1,153 @@
+<svg viewBox="0 0 860 540" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono', 'Fira Code', monospace">
+
+  <!-- Background -->
+  <rect width="860" height="540" fill="#0d0d0f" rx="12"/>
+
+  <!-- Title -->
+  <text x="430" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#e4e4f0">Java 8 Features — DLFMDOS</text>
+  <text x="430" y="58" text-anchor="middle" font-size="11" fill="#5a5a6a">DLF got MDOS attacked 💀</text>
+
+  <!-- ── D: Date & Time ── -->
+  <rect x="30" y="80" width="175" height="195" rx="10" fill="#131316" stroke="#1e1e26" stroke-width="1.5"/>
+  <rect x="30" y="80" width="175" height="36" rx="10" fill="#1a1230"/>
+  <rect x="30" y="102" width="175" height="14" fill="#1a1230"/>
+  <text x="117" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#7c6af7">D — Date &amp; Time API</text>
+
+  <text x="50" y="132" font-size="10" fill="#2dd4aa">Classes</text>
+  <text x="50" y="150" font-size="10" fill="#8a8a9a">LocalDate     date only</text>
+  <text x="50" y="165" font-size="10" fill="#8a8a9a">LocalTime     time only</text>
+  <text x="50" y="180" font-size="10" fill="#8a8a9a">LocalDateTime date+time</text>
+  <text x="50" y="195" font-size="10" fill="#8a8a9a">ZonedDateTime with tz</text>
+  <text x="50" y="210" font-size="10" fill="#8a8a9a">Instant       epoch ms</text>
+
+  <text x="50" y="230" font-size="10" fill="#2dd4aa">Key traits</text>
+  <text x="50" y="247" font-size="10" fill="#8a8a9a">✓ Immutable &amp; thread-safe</text>
+  <text x="50" y="262" font-size="10" fill="#8a8a9a">✓ Replaces java.util.Date</text>
+
+  <!-- ── L: Lambda ── -->
+  <rect x="225" y="80" width="175" height="195" rx="10" fill="#131316" stroke="#1e1e26" stroke-width="1.5"/>
+  <rect x="225" y="80" width="175" height="36" rx="10" fill="#0d2318"/>
+  <rect x="225" y="102" width="175" height="14" fill="#0d2318"/>
+  <text x="312" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#2dd4aa">L — Lambda Expression</text>
+
+  <text x="245" y="132" font-size="10" fill="#2dd4aa">Syntax</text>
+  <text x="245" y="150" font-size="10" fill="#8a8a9a">(a, b) -&gt; a + b</text>
+  <text x="245" y="165" font-size="10" fill="#8a8a9a">() -&gt; "hello"</text>
+  <text x="245" y="180" font-size="10" fill="#8a8a9a">s -&gt; s.toUpperCase()</text>
+
+  <text x="245" y="200" font-size="10" fill="#2dd4aa">Key traits</text>
+  <text x="245" y="217" font-size="10" fill="#8a8a9a">✓ Anonymous function</text>
+  <text x="245" y="232" font-size="10" fill="#8a8a9a">✓ Needs functional interface</text>
+  <text x="245" y="247" font-size="10" fill="#8a8a9a">✓ Captured vars: eff. final</text>
+  <text x="245" y="262" font-size="10" fill="#8a8a9a">✓ Uses invokedynamic</text>
+
+  <!-- ── F: Functional Interface ── -->
+  <rect x="420" y="80" width="175" height="195" rx="10" fill="#131316" stroke="#1e1e26" stroke-width="1.5"/>
+  <rect x="420" y="80" width="175" height="36" rx="10" fill="#2d1f06"/>
+  <rect x="420" y="102" width="175" height="14" fill="#2d1f06"/>
+  <text x="507" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#f59e0b">F — Functional Interface</text>
+
+  <text x="440" y="132" font-size="10" fill="#f59e0b">Built-in (java.util.function)</text>
+  <text x="440" y="150" font-size="10" fill="#8a8a9a">Predicate&lt;T&gt;     T → boolean</text>
+  <text x="440" y="165" font-size="10" fill="#8a8a9a">Function&lt;T,R&gt;   T → R</text>
+  <text x="440" y="180" font-size="10" fill="#8a8a9a">Consumer&lt;T&gt;     T → void</text>
+  <text x="440" y="195" font-size="10" fill="#8a8a9a">Supplier&lt;T&gt;     () → T</text>
+  <text x="440" y="210" font-size="10" fill="#8a8a9a">BiFunction&lt;T,U,R&gt;</text>
+
+  <text x="440" y="230" font-size="10" fill="#f59e0b">Rule</text>
+  <text x="440" y="247" font-size="10" fill="#8a8a9a">Exactly 1 abstract method</text>
+  <text x="440" y="262" font-size="10" fill="#8a8a9a">@FunctionalInterface</text>
+
+  <!-- ── M: Method References ── -->
+  <rect x="615" y="80" width="215" height="195" rx="10" fill="#131316" stroke="#1e1e26" stroke-width="1.5"/>
+  <rect x="615" y="80" width="215" height="36" rx="10" fill="#2d1008"/>
+  <rect x="615" y="102" width="215" height="14" fill="#2d1008"/>
+  <text x="722" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#f26450">M — Method References</text>
+
+  <text x="635" y="132" font-size="10" fill="#f26450">4 Types</text>
+  <text x="635" y="150" font-size="10" fill="#5a5a6a">① Static</text>
+  <text x="730" y="150" font-size="10" fill="#8a8a9a">Integer::parseInt</text>
+  <text x="635" y="167" font-size="10" fill="#5a5a6a">② Instance (specific)</text>
+  <text x="730" y="167" font-size="10" fill="#8a8a9a">obj::toString</text>
+  <text x="635" y="184" font-size="10" fill="#5a5a6a">③ Instance (arbitrary)</text>
+  <text x="730" y="184" font-size="10" fill="#8a8a9a">String::toUpperCase</text>
+  <text x="635" y="201" font-size="10" fill="#5a5a6a">④ Constructor</text>
+  <text x="730" y="201" font-size="10" fill="#8a8a9a">ArrayList::new</text>
+
+  <text x="635" y="225" font-size="10" fill="#f26450">Purpose</text>
+  <text x="635" y="242" font-size="10" fill="#8a8a9a">Shorthand for lambdas that</text>
+  <text x="635" y="257" font-size="10" fill="#8a8a9a">just call existing methods</text>
+
+  <!-- ── D: Default & Static ── -->
+  <rect x="30" y="300" width="230" height="210" rx="10" fill="#131316" stroke="#1e1e26" stroke-width="1.5"/>
+  <rect x="30" y="300" width="230" height="36" rx="10" fill="#0d1f2d"/>
+  <rect x="30" y="322" width="230" height="14" fill="#0d1f2d"/>
+  <text x="145" y="323" text-anchor="middle" font-size="11" font-weight="700" fill="#38bdf8">D — Default &amp; Static Methods</text>
+
+  <text x="50" y="352" font-size="10" fill="#38bdf8">Default method</text>
+  <text x="50" y="369" font-size="10" fill="#8a8a9a">Has a body in interface</text>
+  <text x="50" y="384" font-size="10" fill="#8a8a9a">Can be overridden</text>
+  <text x="50" y="399" font-size="10" fill="#8a8a9a">Backward compatibility</text>
+  <text x="50" y="414" font-size="10" fill="#5a5a6a">default void greet() {...}</text>
+
+  <text x="50" y="434" font-size="10" fill="#38bdf8">Static method</text>
+  <text x="50" y="451" font-size="10" fill="#8a8a9a">Belongs to interface itself</text>
+  <text x="50" y="466" font-size="10" fill="#8a8a9a">Called via InterfaceName.m()</text>
+  <text x="50" y="481" font-size="10" fill="#5a5a6a">static void helper() {...}</text>
+  <text x="50" y="498" font-size="10" fill="#8a8a9a">e.g. Comparator.comparing()</text>
+
+  <!-- ── O: Optional ── -->
+  <rect x="280" y="300" width="230" height="210" rx="10" fill="#131316" stroke="#1e1e26" stroke-width="1.5"/>
+  <rect x="280" y="300" width="230" height="36" rx="10" fill="#1a2d1a"/>
+  <rect x="280" y="322" width="230" height="14" fill="#1a2d1a"/>
+  <text x="395" y="323" text-anchor="middle" font-size="11" font-weight="700" fill="#4ade80">O — Optional</text>
+
+  <text x="300" y="352" font-size="10" fill="#4ade80">Creating</text>
+  <text x="300" y="369" font-size="10" fill="#8a8a9a">Optional.of(val)         non-null</text>
+  <text x="300" y="384" font-size="10" fill="#8a8a9a">Optional.ofNullable(val) safe</text>
+  <text x="300" y="399" font-size="10" fill="#8a8a9a">Optional.empty()         empty</text>
+
+  <text x="300" y="419" font-size="10" fill="#4ade80">Retrieving</text>
+  <text x="300" y="436" font-size="10" fill="#8a8a9a">orElse(default)</text>
+  <text x="300" y="451" font-size="10" fill="#8a8a9a">orElseGet(supplier)   lazy</text>
+  <text x="300" y="466" font-size="10" fill="#8a8a9a">orElseThrow()</text>
+
+  <text x="300" y="486" font-size="10" fill="#f26450">Anti-patterns</text>
+  <text x="300" y="501" font-size="10" fill="#8a8a9a">✗ Don't use as param/field</text>
+
+  <!-- ── S: Stream API ── -->
+  <rect x="530" y="300" width="300" height="210" rx="10" fill="#131316" stroke="#1e1e26" stroke-width="1.5"/>
+  <rect x="530" y="300" width="300" height="36" rx="10" fill="#2d1230"/>
+  <rect x="530" y="322" width="300" height="14" fill="#2d1230"/>
+  <text x="680" y="323" text-anchor="middle" font-size="11" font-weight="700" fill="#e879f9">S — Stream API</text>
+
+  <!-- Pipeline flow -->
+  <text x="550" y="352" font-size="10" fill="#e879f9">Pipeline</text>
+
+  <rect x="550" y="360" width="62" height="22" rx="4" fill="#1a1a2e" stroke="#7c6af7" stroke-width="1"/>
+  <text x="581" y="375" text-anchor="middle" font-size="9" fill="#7c6af7">Source</text>
+
+  <text x="617" y="375" font-size="10" fill="#36363f">→</text>
+
+  <rect x="628" y="360" width="80" height="22" rx="4" fill="#1a1a2e" stroke="#2dd4aa" stroke-width="1"/>
+  <text x="668" y="375" text-anchor="middle" font-size="9" fill="#2dd4aa">Intermediate</text>
+
+  <text x="713" y="375" font-size="10" fill="#36363f">→</text>
+
+  <rect x="724" y="360" width="62" height="22" rx="4" fill="#1a1a2e" stroke="#f59e0b" stroke-width="1"/>
+  <text x="755" y="375" text-anchor="middle" font-size="9" fill="#f59e0b">Terminal</text>
+
+  <text x="550" y="403" font-size="10" fill="#2dd4aa">Intermediate (lazy)</text>
+  <text x="550" y="419" font-size="10" fill="#8a8a9a">filter   map   flatMap</text>
+  <text x="550" y="434" font-size="10" fill="#8a8a9a">distinct sorted limit skip</text>
+
+  <text x="550" y="454" font-size="10" fill="#f59e0b">Terminal (triggers pipeline)</text>
+  <text x="550" y="470" font-size="10" fill="#8a8a9a">collect  forEach  reduce</text>
+  <text x="550" y="485" font-size="10" fill="#8a8a9a">count  findFirst  anyMatch</text>
+
+  <text x="550" y="501" font-size="10" fill="#f26450">✗ Not a DS  ✗ Single-use  ✓ Lazy</text>
+
+  <!-- Bottom label -->
+  <text x="430" y="528" text-anchor="middle" font-size="10" fill="#36363f">All features work together — Streams use Lambdas + Functional Interfaces internally</text>
+
+</svg>

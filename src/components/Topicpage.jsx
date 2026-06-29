@@ -6,9 +6,11 @@ import { STRING_CONTENT } from '../data/content/String'
 import { STRING_DIAGRAMS } from '../data/diagrams/String/StringDaigraIndex'
 import { COLLECTIONS_CONTENT } from '../data/content/collections'
 import { COLLECTIONS_DIAGRAMS } from '../data/diagrams/collections/index'
+import { JAVA8_CONTENT } from '../data/content/java8Features'
+import { JAVA8_DIAGRAMS } from '../data/diagrams/java8/index'
 
-const CONTENT_MAP  = { hashmap: HASHMAP_CONTENT, 'string-pool': STRING_CONTENT, collections: COLLECTIONS_CONTENT }
-const DIAGRAMS_MAP = { hashmap: HASHMAP_DIAGRAMS, 'string-pool': STRING_DIAGRAMS, collections: COLLECTIONS_DIAGRAMS }
+const CONTENT_MAP  = { hashmap: HASHMAP_CONTENT, 'string-pool': STRING_CONTENT, collections: COLLECTIONS_CONTENT, java8: JAVA8_CONTENT }
+const DIAGRAMS_MAP = { hashmap: HASHMAP_DIAGRAMS, 'string-pool': STRING_DIAGRAMS, collections: COLLECTIONS_DIAGRAMS, java8: JAVA8_DIAGRAMS }
 
 function EmptyState({ tab }) {
   return (
