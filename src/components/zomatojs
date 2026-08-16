@@ -1,0 +1,21 @@
+export const ZOMATO_CONTENT = {
+  overview: '',
+
+  process: [
+    // { round: 'Online Assessment', duration: '', focus: '', notes: '' },
+  ],
+
+  dsaQuestions: [
+    // { question: '', difficulty: 'easy' | 'medium' | 'hard', pattern: '', link: '', notes: '' },
+  ],
+
+  systemDesign: [
+    // { question: '', notes: '' },
+  ],
+
+  behavioral: [
+    // { q: '', notes: '' },
+  ],
+
+  tips: '',
+}

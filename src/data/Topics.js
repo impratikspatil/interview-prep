@@ -102,6 +102,16 @@ export const SECTIONS = [
       { id: 'logging', label: 'Logging', difficulty: 'beginner', tags: ['observability'] },
     ]
   },
+  {
+    id: 'interview-prep',
+    label: 'Interview Preparation',
+    icon: '🎯',
+    topics: [
+      { id: 'zomato', label: 'Zomato', difficulty: 'intermediate', tags: ['company'] },
+      { id: 'resume', label: 'Resume Preparation', difficulty: 'beginner', tags: ['resume'] },
+    ]
+  },
+
 ]
 
 export const DIFFICULTY_CONFIG = {
