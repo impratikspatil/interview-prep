@@ -13,7 +13,18 @@ export const ZOMATO_CONTENT = {
   ],
 
   systemDesign: [
-    // { question: '', notes: '' },
+    { question: 'Design a food delivery platform like Zomato (restaurant discovery, ordering, delivery)', notes: '' },
+    { question: 'Design a real-time order tracking system (live delivery location updates)', notes: '' },
+    { question: 'Design a restaurant search and ranking system (search, filters, relevance)', notes: '' },
+    { question: 'Design a nearby-restaurants / geo-search system (find restaurants within X km of a location)', notes: '' },
+    { question: 'Design a notification system (order updates, offers \u2014 push, SMS, email)', notes: '' },
+    { question: 'Design a rate limiter for public APIs', notes: '' },
+    { question: 'Design a distributed cache', notes: '' },
+    { question: 'Design a URL shortener', notes: '' },
+    { question: 'Design a ratings and reviews system', notes: '' },
+    { question: 'Design a payment and wallet system', notes: '' },
+    { question: 'Design a restaurant menu/inventory management system', notes: '' },
+    { question: 'Design a job queue / async task processing system', notes: '' },
   ],
 
   behavioral: [
