@@ -1,4 +1,4 @@
-import { RESUME_CONTENT } from '../data/resume'
+import { SELF_INTRO_CONTENT } from '../data/selfIntro'
 
 function Section({ title, children }) {
   return (
@@ -15,6 +15,16 @@ function EmptyState({ label }) {
   return <div style={{ fontSize: 12, color: '#5a5a6a' }}>No {label} added yet — coming soon</div>
 }
 
+function FreeformText({ text }) {
+  return (
+    <div>
+      {text.split('\n').map((line, i) => (
+        <p key={i} style={{ margin: line ? '0 0 10px 0' : 0, fontSize: 14, color: '#8a8a9a', lineHeight: 1.9 }}>{line}</p>
+      ))}
+    </div>
+  )
+}
+
 function ListSection({ title, items, render }) {
   return (
     <Section title={title}>
@@ -26,13 +36,13 @@ function ListSection({ title, items, render }) {
 }
 
 export default function ResumePage() {
-  const c = RESUME_CONTENT
+  const c = SELF_INTRO_CONTENT
 
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <div style={{ padding: '20px 28px', borderBottom: '1px solid #1a1a1f', background: '#0d0d0f' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <h1 style={{ margin: 0, fontSize: 20, fontWeight: 600, color: '#e4e4f0' }}>Resume Preparation</h1>
+          <h1 style={{ margin: 0, fontSize: 20, fontWeight: 600, color: '#e4e4f0' }}>Self Introduction</h1>
           <span style={{ padding: '2px 8px', borderRadius: 4, fontSize: 11, background: '#131316', color: '#5a5a6a', border: '1px solid #222228' }}>reference</span>
         </div>
       </div>
@@ -40,42 +50,38 @@ export default function ResumePage() {
       <div style={{ flex: 1, overflowY: 'auto', padding: '24px 28px', maxWidth: 780 }}>
         <Section title="Overview">
           {c.intro
-            ? <p style={{ fontSize: 14, color: '#8a8a9a', lineHeight: 1.9, margin: 0 }}>{c.intro}</p>
+            ? <FreeformText text={c.intro} />
             : <EmptyState label="overview" />}
         </Section>
 
-        <ListSection
-          title="Resume Structure"
-          items={c.structure}
-          render={(s, i) => (
-            <div key={i} style={{ border: '1px solid #1a1a1f', borderRadius: 8, padding: '12px 16px', marginBottom: 8 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: '#c4c4d0', marginBottom: 4 }}>{s.section}</div>
-              {s.notes && <div style={{ fontSize: 12, color: '#8a8a9a', lineHeight: 1.6 }}>{s.notes}</div>}
-            </div>
-          )}
-        />
+        <Section title="Framework">
+          {c.framework
+            ? <FreeformText text={c.framework} />
+            : <EmptyState label="framework" />}
+        </Section>
 
-        <Section title="Bullet Point Formula">
-          {c.bulletFormula
-            ? <p style={{ fontSize: 13, color: '#8a8a9a', lineHeight: 1.8, margin: 0 }}>{c.bulletFormula}</p>
-            : <EmptyState label="bullet formula" />}
+        <Section title="Main Answer (60-90 sec)">
+          {c.mainAnswer ? (
+            <div style={{ background: '#131316', border: '1px solid #222228', borderRadius: 10, padding: 20 }}>
+              <FreeformText text={c.mainAnswer} />
+            </div>
+          ) : <EmptyState label="main answer" />}
         </Section>
 
         <ListSection
-          title="Before / After Examples"
-          items={c.bulletExamples}
-          render={(e, i) => (
+          title="Variations"
+          items={c.variations}
+          render={(v, i) => (
             <div key={i} style={{ border: '1px solid #1a1a1f', borderRadius: 8, padding: '12px 16px', marginBottom: 8 }}>
-              <div style={{ fontSize: 12, color: '#f26450', marginBottom: 4 }}>Before: {e.before}</div>
-              <div style={{ fontSize: 12, color: '#2dd4aa', marginBottom: 4 }}>After: {e.after}</div>
-              {e.why && <div style={{ fontSize: 12, color: '#5a5a6a' }}>{e.why}</div>}
+              <div style={{ fontSize: 13, fontWeight: 600, color: '#c4c4d0', marginBottom: 6 }}>{v.context}</div>
+              {v.answer && <div style={{ fontSize: 13, color: '#8a8a9a', lineHeight: 1.7 }}>{v.answer}</div>}
             </div>
           )}
         />
 
         <ListSection
-          title="ATS Tips"
-          items={c.atsTips}
+          title="Tips"
+          items={c.tips}
           render={(t, i) => (
             <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
               <span style={{ color: '#2dd4aa', fontSize: 12 }}>•</span>
@@ -90,17 +96,6 @@ export default function ResumePage() {
           render={(t, i) => (
             <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
               <span style={{ color: '#f26450', fontSize: 12 }}>•</span>
-              <span style={{ fontSize: 13, color: '#8a8a9a', lineHeight: 1.6 }}>{t}</span>
-            </div>
-          )}
-        />
-
-        <ListSection
-          title="Tailoring Checklist"
-          items={c.tailoringChecklist}
-          render={(t, i) => (
-            <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
-              <span style={{ color: '#7c6af7', fontSize: 12 }}>•</span>
               <span style={{ fontSize: 13, color: '#8a8a9a', lineHeight: 1.6 }}>{t}</span>
             </div>
           )}

@@ -108,10 +108,9 @@ export const SECTIONS = [
     icon: '🎯',
     topics: [
       { id: 'zomato', label: 'Zomato', difficulty: 'intermediate', tags: ['company'] },
-      { id: 'resume', label: 'Resume Preparation', difficulty: 'beginner', tags: ['resume'] },
+      { id: 'resume', label: 'Self Introduction', difficulty: 'beginner', tags: ['intro'] },
     ]
   },
-
 ]
 
 export const DIFFICULTY_CONFIG = {
