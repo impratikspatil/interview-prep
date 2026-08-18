@@ -1,5 +1,8 @@
+// Zomato interview preparation content.
+// Fill in as notes/experience come in — structure is ready, arrays are empty placeholders.
+
 export const ZOMATO_CONTENT = {
-  overview: '',
+  overview: '', // 2-3 line company + role context (e.g. tech stack, team, what they look for)
 
   process: [
     // { round: 'Online Assessment', duration: '', focus: '', notes: '' },
@@ -14,8 +17,437 @@ export const ZOMATO_CONTENT = {
   ],
 
   behavioral: [
-    // { q: '', notes: '' },
+    {
+      q: 'Tell me about your current project and your role in it.',
+      notes: `Currently, I work across multiple internal tools and technical projects rather than a single project. I've built and worked on internal applications like CSM and Testharmonics using React, with backend services using Java Spring Boot and Python Django.
+
+Apart from that, I work on Jenkins CI/CD pipelines, ServiceNow form integrations with Windchill using JavaScript, and improvements to an internal Python-based framework used by the product.
+
+So overall, my role involves full-stack development, backend APIs, integrations, automation, CI/CD, and framework improvements.
+
+Working across these different areas has also helped me become comfortable picking up new technologies quickly and adapting to different requirements, so I'm always open to learning and taking ownership of new areas.`
+    },
+    {
+      q: 'Tell me about CSM. What problem does it solve?',
+      notes: `CSM stands for Central Server Manager. It is an internal platform used by 600+ engineers across multiple teams to manage and automate server and VM-related operations.
+
+The main problem it solves is reducing manual effort around server provisioning, VM lifecycle management, Azure operations, and resource cleanup through a centralized platform.
+
+It also provides visibility into the testing and release lifecycle by collecting and displaying relevant data through tables, charts, and graphs, helping teams track testing phases, release progress, and overall status.
+
+For CSM, I worked primarily with Java and Spring Boot on the backend and React on the frontend, developing REST APIs and implementing business logic for these workflows and dashboards.`
+    },
+    {
+      q: 'How is CSM designed/architected?',
+      notes: `CSM follows a client-server architecture. The frontend is built using React, which communicates with the backend through REST APIs developed using Java and Spring Boot.
+
+The Spring Boot backend follows a layered architecture, mainly consisting of Controller, Service, and Repository layers. PostgreSQL is used for persistent data, while Redis is used for caching and asynchronous processing.
+
+CSM also integrates with external systems such as Azure, LDAP, ServiceNow, and Ansible for authentication, infrastructure operations, and automation.
+
+The frontend consumes these APIs to display server, testing, and release-related information through tables, charts, and graphs.`
+    },
+    {
+      q: 'What was the biggest technical challenge in building CSM end-to-end?',
+      notes: `One of the biggest challenges I faced was handling multiple long-running automation requests concurrently. Some requests were getting submitted successfully but then remained stuck in progress.
+
+We first recreated the issue in our development environment by creating a similar concurrent-load scenario and monitored the application and running threads to identify where the requests were getting blocked.
+
+We found that executing long-running operations directly within application threads was causing concurrency and request-processing issues.
+
+To solve this, we moved these operations to asynchronous processing using Redis Queue (RQ). Instead of executing the operation directly in the API request, we placed it in a queue and processed it through background workers.
+
+This kept the APIs responsive and allowed us to handle multiple operations more reliably while tracking their queued, running, completed, and failed states.`
+    },
+    {
+      q: 'What exactly was your contribution to CSM?',
+      notes: `I was involved in building CSM from scratch end-to-end. I started from setting up the project and designing the UI, including creating the initial designs in Figma.
+
+I then developed the frontend using React and the backend using Java and Spring Boot, implementing the required features and integrations.
+
+I was also responsible for development testing, debugging, and deployment of the application on the server.
+
+Currently, I'm also responsible for maintaining and managing CSM, including fixing issues, improving existing features, and handling new requirements.
+
+So overall, I've worked on CSM across the complete lifecycle — design, development, testing, deployment, and maintenance.`
+    },
+    {
+      q: 'Why did you choose Spring Boot for CSM?',
+      notes: `CSM was an internal tool, and we already had a team managing multiple internal applications that followed a similar technology stack, mainly Java and Spring Boot.
+
+CSM had similar requirements around REST APIs, database operations, authentication, integrations, and production deployment, which Spring Boot could handle well.
+
+So using Spring Boot allowed us to reuse the existing ecosystem, development practices, and team expertise, instead of introducing a completely new technology stack.
+
+It also reduced the learning and maintenance overhead while allowing us to build production-ready APIs efficiently.`
+    },
+    {
+      q: "How did you improve CSM's performance?",
+      notes: `One of the main areas I worked on was optimizing API response time and database performance.
+
+I identified frequently accessed data and introduced Redis caching where it made sense, so we didn't have to query the database repeatedly for the same information.
+
+I also worked on database indexing and query optimization for frequently used queries.
+
+For long-running operations, we moved the processing to asynchronous background execution using Redis Queue, so the API didn't remain blocked while the operation was running.
+
+These changes helped make the APIs more responsive and improved the overall user experience of CSM.`
+    },
+    {
+      q: 'Why did you use React for these internal tools?',
+      notes: `We chose React because these internal tools have data-heavy and interactive UIs, with tables, charts, graphs, forms, filters, and different views based on user actions.
+
+React's component-based architecture made it easier to build reusable UI components and maintain the application as the number of features increased.
+
+We also had existing team expertise and reusable components in React, so using it reduced development and maintenance effort.
+
+It also integrates well with our Spring Boot REST APIs and makes it straightforward to build responsive and dynamic interfaces.`
+    },
+    {
+      q: 'How did you handle authentication and authorization in CSM?',
+      notes: `For authentication, we integrated CSM with our organization's LDAP-based authentication so users could log in using their existing corporate credentials.
+
+After authentication, we handled authorization using role-based access control (RBAC). Based on the user's role and permissions, we controlled which APIs, features, and operations they could access.
+
+This was important because CSM performs operations such as server provisioning and resource management, so we needed to ensure that only authorized users could perform sensitive operations.`
+    },
+    {
+      q: 'How did you handle errors and failures in CSM?',
+      notes: `In CSM, we had different types of failures because some operations involved external systems like Azure and Ansible.
+
+For our REST APIs, we used global exception handling to catch application-level exceptions and return proper HTTP status codes and meaningful error messages to the React frontend.
+
+For long-running operations, especially Ansible-based automation, we didn't keep the API request waiting. We used RQ with Redis, where the request was queued and processed by a background worker.
+
+We maintained the operation status as queued, running, completed, or failed. If an operation failed, we captured the failure information and updated the status so the user could see that the operation had failed instead of seeing it stuck indefinitely.
+
+We also added logging around these operations, which helped us debug failures and troubleshoot production issues.`
+    },
+    {
+      q: 'How did you handle database design in CSM?',
+      notes: `We used PostgreSQL as the primary database. I designed the tables based on the different entities involved in CSM, such as servers, users, operations, and release-related data.
+
+We used proper relationships and constraints to maintain data consistency and added indexes on frequently queried columns to improve query performance.
+
+Since CSM also displays a lot of testing and release data, some queries involved filtering, joining, and aggregating large datasets. We optimized those queries and used Redis caching for frequently accessed data where appropriate.
+
+The goal was to keep the database consistent while making the APIs responsive for the users.`
+    },
+    {
+      q: 'How did you ensure CSM could handle multiple users and requests?',
+      notes: `CSM is used by 600+ engineers, so we designed the backend to handle concurrent API requests without blocking the application.
+
+For normal API operations, Spring Boot handles requests concurrently using its thread pool. For long-running operations such as server or VM automation, we moved the work to asynchronous processing using RQ and Redis.
+
+This prevents a long-running automation task from occupying an API request thread and allows other users to continue using CSM normally.
+
+We also used Redis caching and database indexing to reduce unnecessary database load and improve response times.
+
+This combination helped CSM handle multiple users while keeping the application responsive.`
+    },
+    {
+      q: 'How did you deploy CSM?',
+      notes: `Initially, CSM was deployed on an on-premises RHEL 9 server. I was involved in deploying, configuring, and maintaining the application in that environment.
+
+Later, we migrated CSM to Azure, where I was involved in deploying and configuring the application in the cloud environment.
+
+This gave me practical experience working with both on-premises Linux infrastructure and Azure, including deployment, configuration, troubleshooting, and maintenance.`
+    },
+    {
+      q: 'How did you monitor and troubleshoot CSM in production?',
+      notes: `For production issues, I generally started by checking the application logs and server logs to identify where the failure was occurring.
+
+For issues involving long-running or asynchronous operations, I also checked the queue and worker status to see whether the task was queued, running, or failed.
+
+We also monitored the application and server health to identify issues related to CPU, memory, database connectivity, or external services.
+
+Once I identified the root cause, I reproduced the issue in the development environment whenever possible, fixed it, tested the change, and then deployed the fix.`
+    },
+    {
+      q: 'How did you ensure the quality of CSM before deployment?',
+      notes: `We had a separate development environment where we first deployed and tested all changes before moving them to production.
+
+After implementing a feature or fixing an issue, I tested the REST APIs, React UI flows, database operations, and external integrations in the dev environment.
+
+We also tested both success and failure scenarios and performed regression testing to make sure existing functionality was not affected.
+
+Once everything was verified in the development environment, we deployed the changes to production and performed post-deployment verification to make sure the application was working as expected.`
+    },
+    {
+      q: 'How did you handle scalability in CSM?',
+      notes: `Since CSM is used by 600+ engineers, we designed the application so that user requests and long-running operations were handled separately.
+
+The Spring Boot backend handles normal API requests, while resource-intensive and long-running operations are processed asynchronously using RQ and Redis. This prevents those operations from blocking API requests.
+
+We also used Redis caching and database indexing to reduce unnecessary database load and improve response times.
+
+So, our approach was mainly to separate request processing from heavy operations and reduce the load on the database, allowing the application to support more concurrent users and operations.`
+    },
+    {
+      q: 'How did you handle security in CSM?',
+      notes: `For authentication, CSM integrated with our organization's LDAP, so users could authenticate using their existing corporate credentials.
+
+For authorization, we implemented role-based access control, where permissions were based on the user's role.
+
+Since CSM performs operations like server provisioning and resource management, we restricted sensitive operations to users with the appropriate permissions.
+
+We also ensured that backend APIs validated the user's authorization before performing the requested operation, rather than relying only on frontend restrictions.`
+    },
+    {
+      q: "How did you improve CSM's API performance?",
+      notes: `The main issue was that the API was fetching a large amount of data even when the frontend only needed a subset of it.
+
+I used Spring Data JPA Specifications to build dynamic server-side filtering based on the user's search criteria instead of fetching the complete dataset.
+
+I also added appropriate database indexes for frequently filtered columns and optimized the queries.
+
+For frequently accessed data, we used Redis caching to avoid repeatedly querying PostgreSQL.
+
+With these changes, we reduced the response size from around 22 MB to 277 KB and improved the response time from approximately 7 seconds to 225 milliseconds.`
+    },
+    {
+      q: 'How did you handle long-running operations in CSM?',
+      notes: `Some CSM operations, such as server and VM automation, could take a significant amount of time to complete. We didn't want these operations to keep the API request waiting.
+
+So we moved these operations to asynchronous processing using RQ and Redis. The Spring Boot API accepts the request and places the task into the queue, and a background worker processes it separately.
+
+We also maintained the operation status as queued, running, completed, or failed, so the frontend could display the current status to the user.
+
+This helped keep the API responsive while allowing multiple long-running operations to be processed independently.`
+    },
+    {
+      q: 'How did you handle external system integrations in CSM?',
+      notes: `CSM had to interact with several external systems because many of the operations were not handled entirely inside the application.
+
+For example, LDAP was used for user authentication, while Azure and Ansible were involved in server and VM-related operations. We also had ServiceNow integration for certain workflows.
+
+In the backend, I kept this integration logic within the service layer instead of putting it directly inside the controllers. The controller received the request, the service validated the business requirements, and then the appropriate integration was triggered.
+
+For operations that involved infrastructure or could take a long time, we used asynchronous processing with RQ and Redis. This prevented the API request from waiting for the external operation to finish.
+
+We also handled success and failure responses from these external systems and updated the operation status accordingly, so the user could track whether the operation was queued, running, completed, or failed.`
+    },
+    {
+      q: 'Why did you use RQ and Redis for Ansible execution?',
+      notes: `We used RQ with Redis because Ansible operations are long-running and should not block the application's request-processing threads.
+
+Previously, ansible-runner was executed from the web application's threaded workers, and because ansible-runner internally uses fork(), we faced a fork-from-thread deadlock where some requests could remain stuck without any error.
+
+With RQ, the API can submit the automation task to a Redis-backed queue, and an RQ worker executes the Ansible operation separately.
+
+This separates the web request lifecycle from the Ansible execution, keeps the application responsive, and removes the underlying fork-from-thread risk.`
+    },
+    {
+      q: 'How did you handle asynchronous processing in CSM?',
+      notes: `Some CSM operations, especially Ansible-based automation, are long-running and shouldn't execute inside the normal API request flow.
+
+We implemented RQ with Redis to move these operations to background workers. The API receives the request, validates the required information, and puts the automation task into the queue.
+
+An RQ worker then picks up the task and executes the Ansible operation independently of the web request. We track the execution status so the application can identify whether the operation is queued, running, completed, or failed.
+
+This approach keeps the API responsive and, importantly, moves ansible-runner execution outside the multi-threaded web-worker process, eliminating the fork-from-thread deadlock we were experiencing.`
+    },
+    {
+      q: 'What happens when an Ansible job fails in CSM?',
+      notes: `The Ansible execution runs as a background job through RQ, so the API request itself is not blocked by the operation.
+
+During execution, we capture the result of the Ansible run. If the operation fails or throws an exception, we log the error along with the RequestID and execution details so that we can trace the failure.
+
+The corresponding operation status is then updated to failed, allowing the UI to show the user that the automation did not complete successfully.
+
+We also added a 600-second timeout around certain ansible-runner executions as a safeguard against operations hanging indefinitely.`
+    },
+    {
+      q: 'How did you handle concurrent Ansible requests in CSM?',
+      notes: `We had automation requests executing concurrently, and because ansible-runner internally uses fork() within our multi-threaded Gunicorn workers, we faced a fork-from-thread deadlock where requests could hang indefinitely if a lock was held during the fork.
+
+I moved Ansible execution off the request threads entirely using RQ with Redis, so the operations run asynchronously in background workers.
+
+That fixed the threading deadlock, but we still don't have per-server serialization, meaning two requests targeting the same host can still run concurrently and potentially cause contention.
+
+My proposed next step is to use a per-server lock keyed by hostname in Redis, so requests targeting the same server are processed sequentially while requests for different servers can continue in parallel.`
+    },
+    {
+      q: 'What would you improve in CSM if you had more time?',
+      notes: `One improvement I would prioritize is per-server serialization for Ansible operations.
+
+Currently, RQ allows us to process automation asynchronously, but two requests targeting the same server can still execute concurrently, which can cause contention or unexpected behavior.
+
+I would introduce a per-server lock using Redis, keyed by the server hostname. This would ensure that operations targeting the same server are processed sequentially, while operations targeting different servers can continue in parallel.
+
+I would also complete the migration of the remaining unguarded Ansible operations to RQ and improve the overall request → execution → status → logging → notification flow.`
+    },
+    {
+      q: 'What was your role in the CSM architecture and design decisions?',
+      notes: `Since I worked on CSM from scratch, I was involved in the application design from the beginning. I worked on the initial UI designs in Figma, defined the frontend-backend interaction, and implemented the Spring Boot APIs and React components.
+
+I also made decisions around how long-running automation should be handled. For example, after we faced the Ansible concurrency issue, I helped move the execution to RQ with Redis instead of keeping it inside the request flow.
+
+So my involvement wasn't limited to implementing individual features; I was involved across design, development, integration, testing, deployment, and ongoing improvements.`
+    },
+    {
+      q: 'What did you learn from building CSM from scratch?',
+      notes: `The biggest learning was understanding the complete lifecycle of building and owning a production application, rather than only developing individual features.
+
+I got experience across UI design, React development, Spring Boot APIs, database design, external integrations, asynchronous processing, testing, deployment, and production maintenance.
+
+I also learned the importance of designing for real-world problems like long-running operations, concurrency, failures, and scalability. The Ansible/RQ issue especially helped me understand how application architecture can affect production reliability.
+
+Overall, CSM helped me become more comfortable with taking ownership of a system end-to-end and learning new technologies when the problem requires them.`
+    },
+    {
+      q: 'What would you do if an Ansible operation gets stuck again?',
+      notes: `First, I would identify whether the issue is with the queue, worker, Ansible execution, or target server.
+
+I would check the RequestID and application logs, verify the RQ job and worker status, and check whether ansible-runner is still executing or has become stuck.
+
+Since we already reproduced the previous issue in the development environment, I would try to reproduce the same scenario and inspect the concurrent execution behavior.
+
+I would also ensure that the operation has an appropriate timeout, so a stuck Ansible process doesn't remain indefinitely.
+
+If the issue is related to concurrent operations on the same server, I would investigate the per-server Redis locking/serialization mechanism we identified as the next architectural improvement.`
+    },
+    {
+      q: 'Why did you choose RQ instead of handling the Ansible execution directly in Spring Boot?',
+      notes: `The main reason was that Ansible execution is long-running and process-based, so keeping it inside the web request flow wasn't reliable.
+
+We had already experienced the fork-from-thread deadlock when ansible-runner was executed from multi-threaded Gunicorn workers.
+
+RQ with Redis gave us a clean background-job model where the request submits the task and a worker handles the actual Ansible execution separately.
+
+This allowed us to keep the API responsive, isolate the automation workload, and track the job independently from the HTTP request.`
+    },
+    {
+      q: 'How did you design CSM to be maintainable?',
+      notes: `Since CSM was built from scratch and is expected to evolve, I kept the application separated into clear layers and responsibilities.
+
+On the backend, we separated API handling, business logic, data access, and external integrations, so changes in one area wouldn't unnecessarily affect another.
+
+For long-running automation, we also separated the request handling from background execution using RQ and Redis.
+
+On the frontend, we used reusable React components, and we kept the UI and backend communication through well-defined REST APIs.
+
+This structure made it easier to add new features, troubleshoot issues, and maintain the application as the number of users and requirements increased.`
+    },
+    {
+      q: 'How did you decide which operations should be asynchronous in CSM?',
+      notes: `I considered an operation asynchronous when it was long-running or involved external infrastructure operations, especially Ansible-based operations on Windchill servers.
+
+These operations could take significant time and didn't need to keep the user's HTTP request waiting until completion.
+
+So instead of executing them directly in the request flow, we put them into RQ with Redis and processed them through background workers.
+
+Short operations such as normal data retrieval or CRUD-style API requests remained synchronous because they could complete quickly and return the response directly.`
+    },
+    {
+      q: 'How did you handle changes and new requirements in CSM?',
+      notes: `Since I was responsible for CSM end-to-end, new requirements usually started with understanding the business requirement and then breaking it into UI, backend, database, and integration changes.
+
+I would first make the required UI changes, then implement the corresponding Spring Boot APIs and business logic, and update the database or external integrations if required.
+
+I would test the complete flow in the development environment, including existing functionality to avoid regressions.
+
+Once it was stable, I would deploy the change and verify it in the target environment.
+
+This approach helped me manage CSM as an evolving product rather than treating each requirement as an isolated feature.`
+    },
+    {
+      q: 'How did you prioritize features and requirements while building CSM?',
+      notes: `I prioritized requirements based on business impact, user needs, and dependencies between features.
+
+Since CSM is used by multiple engineering teams, I first focused on the core workflows such as server operations, automation, and release/testing visibility.
+
+For a new feature, I would understand the requirement, identify the backend, UI, database, and integration changes involved, and then implement and test it incrementally.
+
+I also prioritized production issues and reliability problems first, because they directly affected users. For example, when we faced the Ansible request-hanging issue, addressing that reliability problem became more important than adding new functionality.`
+    },
+    {
+      q: 'How did you manage CSM after it was deployed?',
+      notes: `After deployment, I continued to take responsibility for maintaining and managing CSM.
+
+This included monitoring issues, debugging production problems, fixing bugs, handling new requirements, and making improvements to existing features.
+
+When an issue occurred, I would first investigate it using logs and application behavior, reproduce it in the development environment whenever possible, implement the fix, test it, and then deploy it.
+
+So my responsibility wasn't only to build CSM, but also to own it after deployment and continuously improve its reliability and functionality.`
+    },
+    {
+      q: 'What makes CSM different from a typical CRUD application?',
+      notes: `CSM is more than a typical CRUD application because it interacts with real infrastructure and multiple external systems.
+
+Apart from storing and displaying data, it performs operations such as server and VM automation through Ansible and Azure, integrates with LDAP and ServiceNow, and handles long-running asynchronous operations using RQ and Redis.
+
+It also provides testing and release lifecycle visibility through tables, charts, and graphs.
+
+So the complexity comes from external integrations, automation, asynchronous processing, concurrency, failure handling, and production reliability, rather than just creating, reading, updating, and deleting database records.`
+    },
+    {
+      q: 'What was the most impactful feature you built in CSM?',
+      notes: `One of the most impactful areas was the automation of server and VM-related operations. Instead of engineers manually performing these operations on test servers, CSM provided a centralized interface to initiate and track them.
+
+I worked on the backend APIs and automation flow, including the integration with Ansible, and later moved long-running Ansible execution to RQ with Redis for asynchronous processing.
+
+This was particularly valuable because CSM is used by 600+ engineers, so automating these repetitive operations reduced manual effort and made the process more consistent.
+
+I also worked on the testing and release visibility side, where CSM presents the data through tables, charts, and graphs so teams can track their testing and release lifecycle.`
+    },
+    {
+      q: 'Why did you use Spring Data JPA Specifications in CSM?',
+      notes: `CSM has APIs where users can filter data based on multiple optional criteria. Instead of creating a separate repository query for every possible combination of filters, I used Spring Data JPA Specifications.
+
+Specifications allowed us to build the query dynamically based on the filters provided by the user. So only the required data was fetched from PostgreSQL instead of retrieving a large dataset and filtering it in the application or frontend.
+
+This made the APIs more flexible and also helped improve performance, especially for our data-heavy testing and release-related APIs.`
+    },
+    {
+      q: 'How did you use Redis in CSM?',
+      notes: `We used Redis mainly for caching and asynchronous processing.
+
+For caching, we followed a cache-aside pattern. When an API request came in, we first checked Redis. If the data was present, we returned it directly. On a cache miss, the Spring Boot service queried PostgreSQL, processed the response, and stored it in Redis with a TTL.
+
+We also used explicit cache invalidation when underlying data changed, so users wouldn't receive stale information. We centralized this invalidation logic so different update operations could invalidate the relevant cache entries.
+
+Separately, Redis was used as the backing store for our RQ-based asynchronous processing, where long-running Ansible operations were moved out of the request flow.
+
+So Redis helped us with both API performance through caching and asynchronous processing of long-running operations.`
+    },
+    {
+      q: 'How did you implement caching in CSM?',
+      notes: `We cached the /centralServers endpoint because it was being called frequently by the frontend and the server list didn't change very frequently.
+
+Since the endpoint supported filters like status and exclude_prefixes, I designed the cache key to include the filter combination. For example, centralServers:Available:none and centralServers:Down:pun would have separate cache entries.
+
+This prevented different filter requests from returning each other's cached data and reduced repeated querying and serialization of the server list.
+
+We also handled cache invalidation whenever server status was changed, so updated information would be fetched instead of serving stale data.
+
+One lesson I learned was that cache invalidation becomes harder as the number of write paths increases, so centralizing the invalidation logic is important.`
+    },
+    {
+      q: 'How did you handle cache invalidation in CSM?',
+      notes: `We used explicit cache invalidation whenever the underlying data was modified.
+
+For example, if a server's status or related information changed, we invalidated the relevant Redis cache entries so that the next request would fetch the latest data from PostgreSQL.
+
+We centralized the invalidation logic in a common service/utility instead of duplicating cache deletion logic across different APIs.
+
+For dynamic cache keys, we also supported pattern-based invalidation, so related cached entries could be removed together.
+
+This helped maintain cache consistency while still getting the performance benefits of Redis caching.`
+    },
+    {
+      q: 'How did you decide what data to cache in CSM?',
+      notes: `I focused on data that was frequently requested but relatively expensive to retrieve or process.
+
+For example, server-related data was requested frequently by the frontend, and repeatedly querying PostgreSQL and processing the same response was unnecessary.
+
+So we cached those responses using Redis with appropriate TTL and cache keys based on the request parameters.
+
+I avoided caching highly dynamic data where the risk of stale information was higher, and for data that could change, we used explicit cache invalidation when the underlying data was updated.
+
+The goal was to reduce unnecessary database calls while maintaining acceptable data freshness.`
+    },
   ],
 
-  tips: '',
+  tips: '', // freeform prep notes, gotchas, what worked
 }
