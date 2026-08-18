@@ -1,7 +1,7 @@
 import './index.css'
 import { useState } from 'react'
 import Sidebar from './components/Sidebar'
-import TopicPage from './components/Topicpage'
+import TopicPage from './components/TopicPage'
 import CompanyPage from './components/CompanyPage'
 import ResumePage from './components/ResumePage'
 import Dashboard from './components/Dashboard'
