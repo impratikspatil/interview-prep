@@ -105,11 +105,15 @@ It also integrates well with our Spring Boot REST APIs and makes it straightforw
     },
     {
       q: 'How did you handle authentication and authorization in CSM?',
-      notes: `For authentication, we integrated CSM with our organization's LDAP-based authentication so users could log in using their existing corporate credentials.
+      notes: `We used LDAP-based authentication for user login. When a user logs in, CSM validates their username and password against the company LDAP server.
 
-After authentication, we handled authorization using role-based access control (RBAC). Based on the user's role and permissions, we controlled which APIs, features, and operations they could access.
+After successful authentication, we retrieve the user's role and feature-level permissions from our database. We have roles such as standard, admin, and superuser.
 
-This was important because CSM performs operations such as server provisioning and resource management, so we needed to ensure that only authorized users could perform sensitive operations.`
+We then generate a JWT token containing the username and role and return it to the frontend along with the user's permissions and a permission_version.
+
+The frontend uses this information to control access to different features, while the permission_version helps detect when an administrator changes a user's role or permissions.
+
+So overall, we use LDAP for authentication and application-level RBAC/feature authorization.`
     },
     {
       q: 'How did you handle errors and failures in CSM?',
@@ -447,7 +451,132 @@ I avoided caching highly dynamic data where the risk of stale information was hi
 
 The goal was to reduce unnecessary database calls while maintaining acceptable data freshness.`
     },
+    {
+      q: 'How did you handle database and cache consistency in CSM?',
+      notes: `We treated PostgreSQL as the source of truth and Redis as the caching layer.
+
+Whenever data was updated in PostgreSQL, we invalidated the corresponding Redis cache entries. This ensured that the next request would fetch the latest data from the database and repopulate the cache.
+
+We also used TTL as a safety mechanism, so even if an invalidation path was missed, the cached data would eventually expire.
+
+This gave us a balance between performance and data consistency, while keeping PostgreSQL as the authoritative source.`
+    },
+    {
+      q: 'Why did you separate external integrations from the core business logic?',
+      notes: `I separated external integrations from the core business logic mainly for separation of concerns. In CSM, integrations such as Azure, Jenkins, LDAP, and ServiceNow can have their own failures, authentication, and API changes.
+
+By keeping that logic separate, the core business logic remains focused on the actual CSM workflows.
+
+It also makes the system easier to test, maintain, and extend. If an external API changes, I can modify the integration layer without affecting the core workflow.
+
+It also gives us a clear place to handle timeouts, retries, errors, and logging for external calls.`
+    },
+    {
+      q: 'How did you handle timeouts for long-running operations in CSM?',
+      notes: `Some Ansible operations could take a long time or potentially get stuck, so we added a timeout mechanism around the Ansible execution.
+
+As a stopgap for the remaining direct ansible-runner calls, we wrapped r.run() using a ThreadPoolExecutor with a 600-second timeout.
+
+If the operation doesn't complete within that limit, we can treat it as a timeout instead of allowing the request to remain stuck indefinitely.
+
+At the architectural level, we moved Ansible execution to RQ workers, which separates the long-running operation from the web request itself. The timeout mechanism provides an additional safeguard while the remaining direct execution paths are migrated.`
+    },
+    {
+      q: 'How did you handle failures from external systems in CSM?',
+      notes: `For external systems, I treated failures separately from our core business logic. We used exception handling around external calls so a failure from systems like Azure, Jenkins, LDAP, or ServiceNow wouldn't crash the entire application.
+
+We captured the failure through structured logging and error handling, returned an appropriate response to the user, and preserved enough information to troubleshoot the failed operation.
+
+For long-running automation, we also tracked the request status, so the user could identify whether the operation succeeded or failed.
+
+The main idea was to make external failures isolated, observable, and recoverable, rather than allowing them to propagate through the application.`
+    },
+    {
+      q: 'How did you handle logging and traceability in CSM?',
+      notes: `Since CSM performs long-running automation operations, we needed proper traceability from the initial API request to the automation execution.
+
+We added a RequestID to error logs so we could correlate a failure with the original request. We also improved exception logging by capturing the complete exception information and stack trace instead of just a generic error message.
+
+This was especially useful while debugging the Ansible request-hanging issue, because we could trace individual requests and identify where the failure or timeout was occurring.
+
+Overall, this made production troubleshooting much easier because we could quickly identify which request failed, where it failed, and the actual underlying exception.`
+    },
+    {
+      q: 'How does JWT work in your CSM authentication flow?',
+      notes: `After the user successfully authenticates through LDAP, we retrieve their role and feature-level permissions from our database.
+
+We then generate a JWT containing the username and role and send it to the frontend along with the permissions and permission_version.
+
+For subsequent API requests, the frontend sends the JWT so the backend can identify the authenticated user and validate the token.
+
+The user's permissions are also checked to determine whether they can perform a particular operation or access a specific feature.
+
+The permission_version helps us detect when an administrator changes the user's permissions, so the frontend can refresh the authorization information.
+
+The frontend uses permissions to control which features are visible, but the actual authorization checks happen on the backend, so a user can't bypass access control by calling an API directly even if the UI hides the option.`
+    },
+    {
+      q: 'How did you secure the JWT and protected APIs in CSM?',
+      notes: `After successful LDAP authentication, CSM generated a JWT containing the user's identity, role, and permission version.
+
+For every subsequent request, the frontend sent the JWT through the Authorization header. In the Spring Boot backend, the Spring Security filter chain intercepted the request and validated the JWT before allowing access to protected APIs.
+
+After validation, the authenticated user's information was available through the Spring Security context, and we used the user's role and permissions to determine whether they were authorized to perform the requested operation.
+
+Most importantly, authorization was enforced on the backend, not just the frontend, because frontend checks alone cannot provide real security.`
+    },
+    {
+      q: 'How does Spring Security validate a JWT in your CSM backend?',
+      notes: `When a request comes with a JWT in the Authorization: Bearer header, it passes through the Spring Security filter chain.
+
+The JWT authentication filter extracts the token and validates its signature and claims, such as the username and role.
+
+If the token is valid, we create an authenticated security context containing the user's identity and authorities. The request can then proceed to the protected controller.
+
+If the token is invalid, expired, or missing for a protected API, Spring Security rejects the request instead of allowing it to reach the business logic.`
+    },
+    {
+      q: 'What happens if the JWT is expired in CSM?',
+      notes: `When the request reaches the Spring Security filter chain, the JWT is validated, including its expiration time.
+
+If the token has expired, validation fails and the request is rejected before it reaches the protected controller.
+
+The backend returns an appropriate 401 Unauthorized response, and the frontend can then require the user to authenticate again and obtain a new token.
+
+This prevents an expired JWT from being used to access protected APIs.`
+    },
+    {
+      q: 'How did you handle authorization at the API level in CSM?',
+      notes: `In Spring Boot, the protected APIs go through the Spring Security filter chain. After the JWT is validated, we identify the authenticated user and retrieve their role and permissions.
+
+We then check whether the user has the required role or feature-level permission before executing the business operation.
+
+For example, a standard user may have access to normal server operations, while administrative operations can be restricted to admin or superuser roles.
+
+If the user is authenticated but doesn't have the required permission, we return 403 Forbidden. If the user isn't authenticated or the JWT is invalid, we return 401 Unauthorized.`
+    },
+    {
+      q: 'How did you handle transactions in CSM?',
+      notes: `For operations involving multiple database changes, I used Spring Data JPA transaction management so that the related operations were executed as a single unit of work.
+
+I would use Spring's @Transactional at the service layer, where the business operation is defined.
+
+This ensures that if an operation fails midway, the related database changes can be rolled back, keeping the database in a consistent state.
+
+I would also avoid keeping database transactions open while performing long-running external operations such as Ansible, because that can unnecessarily hold database connections and locks.`
+    },
   ],
 
-  tips: '', // freeform prep notes, gotchas, what worked
+  tips: `JWT flow in CSM — mental model to have solid before the interview:
+
+Login: User -> LDAP authentication -> DB role/permissions lookup -> JWT generation -> sent to frontend
+JWT claims: username, role, permission_version
+
+Protected API calls: React sends "Authorization: Bearer <JWT>" -> backend validates JWT -> checks authorization -> serves API
+
+Key distinction to keep straight if drilled on JWT specifically:
+- LDAP = Authentication ("who are you?")
+- JWT = Carries the authenticated identity/claims ("this user is authenticated, here are their claims")
+- RBAC/permissions = Authorization ("can this user do this operation?")
+- permission_version = detects stale authorization info after an admin changes a user's permissions mid-session`, // freeform prep notes, gotchas, what worked
 }
